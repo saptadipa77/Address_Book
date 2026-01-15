@@ -16,6 +16,7 @@ public class Main {
            System.out.println("5.Add multiple AddressBooks to the system");
            System.out.println("6.Search Person by location");
            System.out.println("7.View Persons by location");
+           System.out.println("8.Count Persons by location");
            Scanner sc = new Scanner(System.in);
            int choice = sc.nextInt();
            AddressBook obj = new AddressBook();
@@ -81,6 +82,16 @@ public class Main {
                            .collect(Collectors.groupingBy(Contact::getCity));
                    cityView.forEach((city, list) -> System.out.println(city + ": " + list));
                }
+               case 8:{
+                   System.out.print("Enter location to count: ");
+                   String loc = sc.next();
+                   long count = addressBookMap.values().stream()
+                           .flatMap(book -> book.getContactList().stream())
+                           .filter(c -> c.getCity().equalsIgnoreCase(loc) || c.getState().equalsIgnoreCase(loc))
+                           .count();
+                   System.out.println("Total: " + count);
+               }
+
                default:{
                    System.out.println("Invalid choice.");
                }
