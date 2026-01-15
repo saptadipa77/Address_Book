@@ -17,6 +17,7 @@ public class Main {
            System.out.println("6.Search Person by location");
            System.out.println("7.View Persons by location");
            System.out.println("8.Count Persons by location");
+           System.out.println("9.Sort entries by Person's name");
            Scanner sc = new Scanner(System.in);
            int choice = sc.nextInt();
            AddressBook obj = new AddressBook();
@@ -90,6 +91,12 @@ public class Main {
                            .filter(c -> c.getCity().equalsIgnoreCase(loc) || c.getState().equalsIgnoreCase(loc))
                            .count();
                    System.out.println("Total: " + count);
+               }
+
+               case 9:{
+                   System.out.println("Enter your choice of sorting category");
+                   int ch=sc.nextInt();
+                   obj.sortEntries(ch);
                }
 
                default:{

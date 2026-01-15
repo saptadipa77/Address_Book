@@ -27,4 +27,12 @@ public class AddressBook {
     public List<Contact> getContactList() {
         return contactList;
     }
+
+    public void sortEntries(int choice) {
+        Comparator<Contact> comp = switch (choice) {
+            case 1 -> Comparator.comparing(Contact::getFirstName);
+            default -> Comparator.comparing(Contact::getFirstName);
+        };
+        contactList.stream().sorted(comp).forEach(System.out::println);
+    }
 }
