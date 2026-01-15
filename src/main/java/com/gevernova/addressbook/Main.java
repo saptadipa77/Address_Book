@@ -12,6 +12,7 @@ public class Main {
            System.out.println("3.Delete Contact");
            System.out.println("4.View Contacts in AddressBook");
            System.out.println("5.Add multiple AddressBooks to the system");
+           System.out.println("6.Search Person by location");
            Scanner sc = new Scanner(System.in);
            int choice = sc.nextInt();
            AddressBook obj = new AddressBook();
@@ -61,6 +62,16 @@ public class Main {
                    addressBookMap.put(sc.next(), new AddressBook());
                }
 
+               case 6:{
+
+                   System.out.print("Enter location: ");
+                   String loc = sc.next();
+                   addressBookMap.values().stream()
+                               .flatMap(book -> book.getContactList().stream())
+                               .filter(c -> c.getCity().equalsIgnoreCase(loc) || c.getState().equalsIgnoreCase(loc))
+                               .forEach(System.out::println);
+
+               }
                default:{
                    System.out.println("Invalid choice.");
                }
