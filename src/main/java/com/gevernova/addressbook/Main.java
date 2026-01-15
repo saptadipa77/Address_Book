@@ -1,5 +1,7 @@
 package com.gevernova.addressbook;
 import java.util.*;
+import java.util.stream.Collectors;
+
 public class Main {
     private static Map<String, AddressBook> addressBookMap = new HashMap<>();
    public static void main(String[] args) {
@@ -13,6 +15,7 @@ public class Main {
            System.out.println("4.View Contacts in AddressBook");
            System.out.println("5.Add multiple AddressBooks to the system");
            System.out.println("6.Search Person by location");
+           System.out.println("7.View Persons by location");
            Scanner sc = new Scanner(System.in);
            int choice = sc.nextInt();
            AddressBook obj = new AddressBook();
@@ -71,6 +74,12 @@ public class Main {
                                .filter(c -> c.getCity().equalsIgnoreCase(loc) || c.getState().equalsIgnoreCase(loc))
                                .forEach(System.out::println);
 
+               }
+               case 7:{
+                   Map<String, List<Contact>> cityView = addressBookMap.values().stream()
+                           .flatMap(book -> book.getContactList().stream())
+                           .collect(Collectors.groupingBy(Contact::getCity));
+                   cityView.forEach((city, list) -> System.out.println(city + ": " + list));
                }
                default:{
                    System.out.println("Invalid choice.");
