@@ -7,6 +7,7 @@ public class Main {
            System.out.println("\n--- MAIN MENU ---");
 
            System.out.println("1. Add Contact to Book");
+           System.out.println("2.Edit Contact");
            Scanner sc = new Scanner(System.in);
            int choice = sc.nextInt();
            AddressBook obj = new AddressBook();
@@ -33,6 +34,12 @@ public class Main {
                    System.out.println("Enter Phone Number:");
                    phoneNumber = sc.nextInt();
                    obj.addContact(new Contact(firstName,lastName,address,city,state,email,zip,phoneNumber));
+               }
+
+               case 2:{
+                   String firstName;
+                   firstName = sc.next();
+                   obj.editContact(firstName,sc);
                }
                default:{
                    System.out.println("Invalid choice.");
