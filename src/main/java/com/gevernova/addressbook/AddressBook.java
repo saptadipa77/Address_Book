@@ -4,7 +4,11 @@ public class AddressBook {
     private List<Contact> contactList = new ArrayList<>();
     public void addContact(Contact contact) {
 
+        if (contactList.stream().anyMatch(c -> c.equals(contact))) { // UC 7 [cite: 42, 44]
+            System.out.println("Contact already exists.");
+        } else {
             contactList.add(contact);
+        }
     }
 
     public void editContact(String name, Scanner sc) {
