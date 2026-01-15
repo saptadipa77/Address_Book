@@ -1,6 +1,7 @@
 package com.gevernova.addressbook;
 import java.util.*;
 public class Main {
+    private static Map<String, AddressBook> addressBookMap = new HashMap<>();
    public static void main(String[] args) {
        System.out.println("Welcome to the address book");
        while (true) {
@@ -10,6 +11,7 @@ public class Main {
            System.out.println("2.Edit Contact");
            System.out.println("3.Delete Contact");
            System.out.println("4.View Contacts in AddressBook");
+           System.out.println("5.Add multiple AddressBooks to the system");
            Scanner sc = new Scanner(System.in);
            int choice = sc.nextInt();
            AddressBook obj = new AddressBook();
@@ -53,6 +55,12 @@ public class Main {
                case 4:{
                    obj.getContactList();
                }
+
+               case 5:{
+                   System.out.print("Name: ");
+                   addressBookMap.put(sc.next(), new AddressBook());
+               }
+
                default:{
                    System.out.println("Invalid choice.");
                }
